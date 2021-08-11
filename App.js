@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
-import { Login } from './components/Login'
+import { Login, Hoster } from './components/Login'
 
 const BaseUrl = 'http://localhost:3000'
 
@@ -19,7 +19,7 @@ export default class ButtonBasics extends Component {
           backgroundColor: 'powderblue',
           alignItems: 'center'
         }}>
-          <Login url={ BaseUrl }></Login> 
+          <Hoster name="FUcke"></Hoster>
         </View>
       </View>
     )
