@@ -1,15 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
+import { Login } from './components/Login'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const BaseUrl = 'http://localhost:3000'
+
+export default class ButtonBasics extends Component {
+  _onPressButton() {
+    alert('You pressed me!')
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={{
+          height: '30%',
+          width: '80%',
+          backgroundColor: 'powderblue',
+          alignItems: 'center'
+        }}>
+          <Login url={ BaseUrl }></Login> 
+        </View>
+      </View>
+    )
+  }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
