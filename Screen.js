@@ -1,21 +1,34 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { createNavigationContainerRef, NavigationContainer } from '@react-navigation/native';
+import { pickBy } from 'lodash';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Button, TextInput, TabBarIOS } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
+import MMKVStorage, { useMMKVStorage } from 'react-native-mmkv-storage';
 
-const Tmp = () => {
-    return (
-        <View>
-            <Text>Tmp</Text>
-        </View>
-    )
-}
+const MMKV = new MMKVStorage
+    .Loader()
+    .withInstanceID('profile')
+    .initialize();
+
 
 export const Home = ({ navigation }) => {
-    return (
-        <View>
-            <Text>Home</Text>
-        </View>
-    )
+    const [pubkey, setPubkey] = useMMKVStorage("user", MMKV);
+
+    console.log(pubkey);
+    if (pubkey) {
+        return (
+            <View>
+                <Text>Home</Text>  
+            </View>
+        )
+    } else {
+        return (
+            <View>
+                <Text>Login</Text>
+                <Button onPress={() => { setPubkey('abc'); navigation.navigate('主页') }} title="login" />
+            </View>
+        )
+    }
+
 }
 
 export const Cart = ({ navigation }) => {
@@ -33,6 +46,7 @@ export const Commody = ({ navigation }) => {
         </View>
     )
 }
+
 
 export const Profile = () => {
     return (
