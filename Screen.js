@@ -1,6 +1,6 @@
-import { FormControl, Input, Button, Box, Stack, VStack, Flex, Container, Center, Pressable, Text } from 'native-base';
+import { FormControl, Input, Button, Box, Stack, VStack, Flex, Container, Center, Pressable, Text, ScrollView } from 'native-base';
 import React, { Component, useState } from 'react';
-import { Keyboard, ScrollView } from 'react-native';
+import { Keyboard } from 'react-native';
 import { View } from 'react-native';
 import MMKVStorage, { useMMKVStorage } from 'react-native-mmkv-storage';
 import { MainIcon } from './components/Logo';
@@ -31,7 +31,7 @@ export const Cart = ({ navigation }) => {
 
 export const Commody = ({ navigation }) => {
     return (
-        <ScrollView>
+        <ScrollView marginLeft="2%" marginRight="2%" paddingTop="2%">
             <VStack borderColor="pink.100">
                 <Comm id="1"></Comm>
             </VStack>

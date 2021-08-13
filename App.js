@@ -43,8 +43,8 @@ export const App = () => {
       tabBarInactiveTintColor: 'gray',
     })}
     >
-      <Tab.Screen name="Home" component={Home} options={{ title: "主页" }} />
       <Tab.Screen name="Commody" component={Commody} options={{ title: "商品" }} />
+      <Tab.Screen name="Home" component={Home} options={{ title: "主页" }} />
       <Tab.Screen name="Cart" component={Cart} options={{ title: "购物车"}} />
       <Tab.Screen name="Profile" component={Profile} options={{ title: "资料" }} />
     </Tab.Navigator>
@@ -95,8 +95,8 @@ export default () => {
     <NativeBaseProvider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} options={{ title:"登录/注册", headerShown: false }} />
           <Stack.Screen name="App" component={App} options={{ title:"主页", headerShown: false }} />
+          <Stack.Screen name="Login" component={Login} options={{ title:"登录/注册", headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
