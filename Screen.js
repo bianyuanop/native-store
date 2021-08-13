@@ -1,52 +1,24 @@
-<<<<<<< HEAD
-import { NavigationContainer } from '@react-navigation/native';
-import React, { Component,useRef, useState, useEffect} from 'react';
-import { render } from 'react-dom';
-import { StyleSheet, Text, View, Image, Button, TextInput, TabBarIOS,SafeAreaView,Dimensions,TouchableOpacity,Platform } from 'react-native';
-import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
-import { Hoster } from './components/Home';
-=======
-import { createNavigationContainerRef, NavigationContainer } from '@react-navigation/native';
-import { pickBy } from 'lodash';
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Button, TextInput } from 'react-native';
+import { FormControl, Input, Button, Box, Stack, VStack, Flex, Container, Center, Pressable, Text } from 'native-base';
+import React, { Component, useState } from 'react';
+import { Keyboard, ScrollView } from 'react-native';
+import {  View, Button } from 'react-native';
 import MMKVStorage, { useMMKVStorage } from 'react-native-mmkv-storage';
+import { MainIcon } from './components/Logo';
+
+import { Commody as Comm } from './components/Commody';
 
 const MMKV = new MMKVStorage
     .Loader()
     .withInstanceID('profile')
     .initialize();
->>>>>>> refs/remotes/origin/main
 
 
 export const Home = ({ navigation }) => {
-<<<<<<< HEAD
     return (
         <View>
-            <Hoster name="chan"></Hoster>
-            <Text></Text>
+            <Text>主页</Text>  
         </View>
     )
-=======
-    const [pubkey, setPubkey] = useMMKVStorage("user", MMKV);
-
-    console.log(pubkey);
-    if (pubkey) {
-        return (
-            <View>
-                <Text>Home</Text>  
-            </View>
-        )
-    } else {
-        return (
-            <View>
-                <Text>Login</Text>
-                <Button onPress={() => { setPubkey('abc'); navigation.navigate('主页') }} title="login" />
-            </View>
-        )
-    }
-
->>>>>>> refs/remotes/origin/main
 }
 
 export const Cart = ({ navigation }) => {
@@ -59,9 +31,11 @@ export const Cart = ({ navigation }) => {
 
 export const Commody = ({ navigation }) => {
     return (
-        <View>
-            <Text>Commody</Text>
-        </View>
+        <ScrollView>
+            <VStack borderColor="pink.100">
+                <Comm id="1"></Comm>
+            </VStack>
+        </ScrollView>
     )
 }
 
@@ -71,5 +45,82 @@ export const Profile = () => {
         <View>
             <Text>Profile</Text>
         </View>
+    )
+}
+
+const phoneValidate = (phone) => {
+    return phone.length == 13;
+}
+
+const valValidate = (val) => {
+    return val.length == 6;
+}
+
+const registerorLogin = () => {
+    MMKV.setString('pubkey', 'test');
+}
+
+export const Login = ({ navigation }) => {
+    let [phone, setPhone] = useState('');
+    let [val, setVal] = useState('');
+    let phone_validation = true;
+    let val_validation = true;
+    let loading = false;
+    return (
+        <Pressable onPress={() => {Keyboard.dismiss()}}>
+            <Box
+                backgroundColor="pink.50"
+                size="100%"
+                justifyContent="center"
+                paddingLeft="5%"
+            >
+                <MainIcon />
+                <FormControl isRequired>
+                    <VStack space={9}>
+                        <Stack mx={4}>
+                            <FormControl.Label>手机号</FormControl.Label>
+                            <Input 
+                            keyboardType='numeric'
+                            p={2} 
+                            variant="underlined"
+                            placeholder="+86" 
+                            onChangeText={ text => phone_validation = phoneValidate(text) } 
+                            _invalid={phone_validation}
+                            width={80}
+                            />
+                        </Stack>
+                        <Stack mx={4}>
+                            <FormControl.Label>验证码</FormControl.Label>
+                            <Flex 
+                                direction='row'
+                            >
+                                <Input 
+                                    keyboardType='numeric'
+                                    variant="underlined"
+                                    p={2} 
+                                    placeholder="XXXXXX" 
+                                    onChangeText={ text => val_validation = valValidate(text) } 
+                                    _invalid={val_validation}
+                                    />
+                                <Button variant="link">发送</Button>
+                            </Flex>
+                        </Stack>
+                    </VStack>
+                </FormControl>
+                <Button 
+                    marginTop="10%"
+                    isLoading={loading} 
+                    onPress={()=>{loading = true}} 
+                    isLoadingText="验证中"
+                    alignSelf="center"
+                    width="35%"
+                    onPress={() => {
+                        registerorLogin();
+                        navigation.navigate('App')
+                    }}
+                >登入/注册</Button>
+            </Box>
+        </Pressable>
+        
     )
 }
