@@ -1475,6 +1475,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+<<<<<<< HEAD
 "@react-aria/checkbox@^3.2.1":
   version "3.2.3"
   resolved "https://registry.nlark.com/@react-aria/checkbox/download/@react-aria/checkbox-3.2.3.tgz#be7f1f881e6d0fb554b5b20b9243e31e222207d5"
@@ -1846,6 +1847,14 @@
   version "0.2.7"
   resolved "https://registry.nlark.com/@react-native-aria/utils/download/@react-native-aria/utils-0.2.7.tgz#53d1f4a44cad382bd9d1a6b5af6cb86624e70f76"
   integrity sha1-U9H0pEytOCvZ0aa1r2y4ZiTnD3Y=
+=======
+"@react-native-async-storage/async-storage@~1.15.0":
+  version "1.15.5"
+  resolved "https://registry.nlark.com/@react-native-async-storage/async-storage/download/@react-native-async-storage/async-storage-1.15.5.tgz#0d221a5ef1cd7a6494a42fcaad43136d68379afb"
+  integrity sha1-DSIaXvHNemSUpC/KrUMTbWg3mvs=
+  dependencies:
+    deep-assign "^3.0.0"
+>>>>>>> refs/remotes/origin/main
 
 "@react-native-community/cli-debugger-ui@^4.13.1":
   version "4.13.1"
@@ -5813,6 +5822,11 @@ react-native-gesture-handler@~1.10.2:
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
     prop-types "^15.7.2"
+
+react-native-mmkv-storage@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.nlark.com/react-native-mmkv-storage/download/react-native-mmkv-storage-0.6.0.tgz#d197d059668f7bd4b86052f9d702eb421c83b0eb"
+  integrity sha1-0ZfQWWaPe9S4YFL51wLrQhyDsOs=
 
 react-native-reanimated@~2.2.0:
   version "2.2.0"
