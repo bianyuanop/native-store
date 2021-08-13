@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, HStack, Image, Text, Pressable } from 'native-base';
+import { Box, HStack, Image, Text, Pressable, VStack } from 'native-base';
 
 export const Commody = (props) => {
 
@@ -8,7 +8,7 @@ export const Commody = (props) => {
     
 
     return (
-        <Box display='flex' flexDirection='row' id={commodyId}>
+        <VStack id={commodyId}>
             <Image source={require('../assets/icon.png')} />
             <HStack>
                 <Text>商品名</Text>
@@ -20,6 +20,6 @@ export const Commody = (props) => {
                 </Pressable>
             </HStack>
             <Text>商品信息</Text>
-        </Box>
+        </VStack>
     )
 }
