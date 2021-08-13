@@ -1,6 +1,7 @@
-import { FormControl, Input, Button, Box, Stack, VStack, Flex, Container, Center } from 'native-base';
+import { FormControl, Input, Button, Box, Stack, VStack, Flex, Container, Center, Pressable, Text } from 'native-base';
 import React, { Component, useState } from 'react';
-import { Text, View, TextInput, Keyboard, Pressable, ScrollView } from 'react-native';
+import { Keyboard, ScrollView } from 'react-native';
+import {  View, Button } from 'react-native';
 import MMKVStorage, { useMMKVStorage } from 'react-native-mmkv-storage';
 import { MainIcon } from './components/Logo';
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'react-native-gesture-handler'
 import React, { Component } from 'react';
 
@@ -101,4 +102,15 @@ export default () => {
       </NavigationContainer>
     </NativeBaseProvider>
   )
+=======
+import React from 'react';
+import { NativeBaseProvider, Box } from 'native-base';
+
+function App() {
+  return (
+    <NativeBaseProvider>
+      <Box>Hello world</Box>
+    </NativeBaseProvider>
+  );
+>>>>>>> refs/remotes/origin/main
 }
