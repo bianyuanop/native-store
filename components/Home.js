@@ -45,6 +45,7 @@ export class Hoster extends Component {
         )
       }
     }
+    
 }
     const ENTRIES1 = [
         {
