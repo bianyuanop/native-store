@@ -1,6 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Button, TextInput, TabBarIOS } from 'react-native';
+import React, { Component,useRef, useState, useEffect} from 'react';
+import { render } from 'react-dom';
+import { StyleSheet, Text, View, Image, Button, TextInput, TabBarIOS,SafeAreaView,Dimensions,TouchableOpacity,Platform } from 'react-native';
+import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
+import { Hoster } from './components/Home';
 
 const Tmp = () => {
     return (
@@ -13,7 +16,8 @@ const Tmp = () => {
 export const Home = ({ navigation }) => {
     return (
         <View>
-            <Text>Home</Text>
+            <Hoster name="chan"></Hoster>
+            <Text></Text>
         </View>
     )
 }
