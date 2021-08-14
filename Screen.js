@@ -1,11 +1,13 @@
-import { FormControl, Input, Button, Box, Stack, VStack, Flex, Container, Center, Pressable, Text, ScrollView } from 'native-base';
 import React, { Component, useState } from 'react';
-import { Keyboard } from 'react-native';
+import { FormControl, Input, Button, Box, Stack, VStack, Flex, Container, Center, Pressable, Text, ScrollView, HStack } from 'native-base';
+import { Keyboard, ImageBackground } from 'react-native';
 import { View } from 'react-native';
 import MMKVStorage, { useMMKVStorage } from 'react-native-mmkv-storage';
 import { MainIcon } from './components/Logo';
 
-import { Commody as Comm } from './components/Commody';
+import { Commody as Comm, HeadCommody, CommodyDetail } from './components/Commody';
+import { createStackNavigator } from '@react-navigation/stack';
+import { ResourceFetch } from './util';
 
 const MMKV = new MMKVStorage
     .Loader()
@@ -29,13 +31,85 @@ export const Cart = ({ navigation }) => {
     )
 }
 
-export const Commody = ({ navigation }) => {
-    return (
-        <ScrollView marginLeft="2%" marginRight="2%" paddingTop="2%">
-            <VStack borderColor="pink.100">
-                <Comm id="1"></Comm>
+const CommodyStack = createStackNavigator();
+export const Commody = ({ route, navigation }) => {
+
+    const recommendation = [
+        {
+            id: 1,
+            store: 1,
+            cover: require('./assets/tea.jpeg')
+        },
+        {
+            id: 2,
+            store: 1,
+            cover: require('./assets/tea1.jpeg')
+        },
+        {
+            id: 3,
+            store: 1,
+            cover: require('./assets/tea2.jpeg')
+        }
+    ];
+    let comms = [
+        {
+            id: 1,
+            store: 1,
+            name: 'tea',
+            cover: require('./assets/tea.jpeg'),
+            price: 20000.80
+        },
+        {
+            id: 2,
+            store: 1,
+            name: 'tea1',
+            cover: require('./assets/tea1.jpeg'),
+            price: 200000000000
+        }
+    ];
+    const commSplit = (data) => {
+        let commLen = data.length;
+        return [data.slice(0, commLen/2), data.slice(commLen/2, commLen)]
+    }
+    
+    const stackGen = (data) => {
+        return (
+            <VStack width="50%">
+                {data.map(
+                    (comm) => <Pressable key={comm.id} onPress={() => {
+                        navigation.navigate('Detail', {
+                            commodyId: comm.id,
+                            storeId:comm.store 
+                        });
+                    }}>
+                        <Comm id={comm.id} name={comm.name} cover={comm.cover} />
+                    </Pressable>
+                )}
             </VStack>
+        )
+    }
+
+    let commSplited = commSplit(comms);
+    let stackLeft = stackGen(commSplited[0]);
+    let stackRight = stackGen(commSplited[1]);
+
+    return (
+        <ScrollView width="98%" margin="1%">
+            {<HeadCommody commodies={recommendation} />}
+            <HStack>
+                {stackLeft}
+                {stackRight}
+            </HStack>
         </ScrollView>
+    )
+}
+
+export const CommodyWrapper = () => {
+    return (
+        <CommodyStack.Navigator>
+            <CommodyStack.Screen name="Vague" component={Commody} options={{ headerShown: false}} />
+            <CommodyStack.Screen name="Detail" component={CommodyDetail} options={{ headerShown: false }} />
+        </CommodyStack.Navigator>
     )
 }
 
@@ -67,7 +141,7 @@ export const Login = ({ navigation }) => {
     let val_validation = true;
     let loading = false;
     return (
-        <Pressable onPress={() => {Keyboard.dismiss()}}>
+        <Pressable key="login" onPress={() => {Keyboard.dismiss()}}>
             <Box
                 backgroundColor="pink.50"
                 size="100%"

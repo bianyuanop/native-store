@@ -2,14 +2,12 @@ import 'react-native-gesture-handler'
 import React, { Component } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { Cart, Commody, Home, Profile, Login } from './Screen';
+import { Cart, Commody, Home, Profile, Login, CommodyWrapper } from './Screen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { NativeBaseProvider, extendTheme } from 'native-base';
 import MMKVStorage from 'react-native-mmkv-storage';
-
-
 
 const BaseUrl = 'http://localhost:3000'
 
@@ -43,7 +41,7 @@ export const App = () => {
       tabBarInactiveTintColor: 'gray',
     })}
     >
-      <Tab.Screen name="Commody" component={Commody} options={{ title: "商品" }} />
+      <Tab.Screen name="Commody" component={CommodyWrapper} options={{ title: "商品" }} />
       <Tab.Screen name="Home" component={Home} options={{ title: "主页" }} />
       <Tab.Screen name="Cart" component={Cart} options={{ title: "购物车"}} />
       <Tab.Screen name="Profile" component={Profile} options={{ title: "资料" }} />
