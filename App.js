@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { NativeBaseProvider, extendTheme } from 'native-base';
 import MMKVStorage from 'react-native-mmkv-storage';
+import { color } from 'styled-system';
 
 const BaseUrl = 'http://localhost:3000'
 
@@ -65,6 +66,18 @@ export default () => {
         800: '#005885',
         900: '#003F5E',
       },
+      mygray: {
+        50: '#f9fafb',
+        100: '#f3f4f6',
+        200: '#e5e7eb',
+        300: '#d1d5db',
+        400: '#9ca3af',
+        500: '#6b7280',
+        600: '#4b5563',
+        700: '#374151',
+        800: '#1f2937',
+        900: '#111827',
+      },
       // Redefinig only one shade, rest of the color will remain same.
       amber: {
         400: '#d97706',
@@ -74,6 +87,23 @@ export default () => {
       // Changing initialColorMode to 'dark'
       initialColorMode: 'dark',
     },
+    components: {
+      Text: {
+        baseStyle: () => {
+          return {
+            color: 'black',
+            fontWeight: 'normal'
+          }
+        }
+      },
+      Heading: {
+        baseStyle: () => {
+          return {
+            color: 'black'
+          } 
+        }
+      }
+    }
   });
 
   let pubkey;

@@ -94,6 +94,19 @@ export const CommodyDetail = ({ navigation, route }) => {
             require('../assets/tea1.jpeg'),
             require('../assets/tea2.jpeg'),
         ],
+        details: [
+            require('../assets/tea.jpeg'),
+            require('../assets/tea1.jpeg'),
+            require('../assets/tea2.jpeg'),
+        ],
+        metadata: {
+            source: 'emei',
+            date: '2019-9-9',
+            wtf: 'something inc',
+            uij: 'something inc',
+            dfd: 'something inc',
+            dd: 'something inc',
+        },
         name: 'cha',
         decribe: 'Loing jing from where we have many years history.',
         sold: 2000,
@@ -111,9 +124,9 @@ export const CommodyDetail = ({ navigation, route }) => {
     }
 
     return (
-        <VStack height="100%" width="98%" margin='1%'>
+        <VStack height="100%" width="98%" margin='1%' backgroundColor='gray.200'>
             <ScrollView>
-                <VStack backgroundColor='gray'>
+                <VStack backgroundColor='white' padding='1%'>
                     <Flex alignItems='center' backgroundColor='pink.50'>
                         <Carousel
                             data={info.covers}
@@ -125,11 +138,30 @@ export const CommodyDetail = ({ navigation, route }) => {
                                 justifyContent: 'center'
                             }} />
                     </Flex>
-                    <Heading marginLeft='2%'>{info.name}</Heading>
-                    <Text>{info.decribe}</Text>
+                    <VStack shadow={3} backgroundColor='#f3f4f6' borderRadius={5} marginTop="1%" marginBottom="1%" padding="1%">
+                        <Heading>{info.name}</Heading>
+                        <Text>{info.decribe}</Text>
+                    </VStack>
+                    <VStack marginTop="1%" marginBottom="1%" borderRadius={5} backgroundColor='#f3f4f6' shadow={3} padding="1%">
+                        <Heading>Metadata</Heading>
+                        {Object.entries(info.metadata).map(item => {
+                            return (
+                                <HStack key={item[0]}>
+                                    <Text color='black'>{item[0]}</Text> 
+                                    <Text marginLeft='auto' color='black'>{item[1]}</Text>
+                                </HStack>
+                            )
+                        })}
+                    </VStack>
+                    <VStack marginTop="1%" marginBottom="1%" borderRadius={5} shadow={3} backgroundColor='#f3f4f6' padding="1%">
+                        <Heading>Details</Heading>
+                        {info.details.map(cover => {
+                            return <Image key={cover} source={cover} alt={cover} width="100%" />
+                        })}
+                    </VStack>
                 </VStack>
             </ScrollView>
-            <HStack backgroundColor='black' padding='1%'>
+            <HStack padding='1%'>
                 <IconButton
                     variant='solid'
                     icon={<Icon size='md' as={ <Entypo name='typing' />} />} 
