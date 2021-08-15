@@ -9,6 +9,7 @@ import { Commody as Comm, HeadCommody, CommodyDetail } from './components/Commod
 import { createStackNavigator } from '@react-navigation/stack';
 import { ResourceFetch } from './util';
 import { Item } from './components/Cart';
+import { ProfileHeader, Adress } from './components/Profile';
 
 const MMKV = new MMKVStorage
     .Loader()
@@ -42,7 +43,7 @@ export const Cart = ({ navigation }) => {
             <VStack width="100%">
                 {data.map(item=>{
                     return (
-                        <Item id={item.id} store={item.store} cover={item.cover} />
+                        <Item key={String(item.id) + String(item.store)} id={item.id} store={item.store} cover={item.cover} />
                     )
                 })}
             </VStack>
@@ -144,9 +145,10 @@ export const CommodyWrapper = () => {
 
 export const Profile = () => {
     return (
-        <View>
-            <Text>Profile</Text>
-        </View>
+        <ScrollView padding="2%">
+            <ProfileHeader account="someaccounthash" name="Chan" />
+            <Adress />
+        </ScrollView>
     )
 }
 
