@@ -19,14 +19,30 @@ export const Commody = (props) => {
     const price = props.price;
 
     const caculateValue = (value) => {
-        let valueString = String(value);
+        let splitedArr = String(value).split('.');
+        let integer, decimal;
+        integer = splitedArr[0];
+        decimal = splitedArr[1];
+
+        if(integer.length < 4) {
+            return value + '$';
+        }
+
+        if (integer.length >= 5) {
+            let priceInW = parseInt(integer) / 10000;
+            return String(priceInW) + 'w';
+        }
+
+        if (integer.length >= 4) {
+            let priceInThousand = parseInt(integer) / 1000; 
+            return String(priceInThousand) + 'k';
+        }
     }
 
     return (
         <VStack 
             id={id} 
-            padding="1%"
-            margin="1%"
+            margin="5%"
             shadow={3} 
             space={3} 
             backgroundColor="white"
@@ -36,7 +52,7 @@ export const Commody = (props) => {
             <Image source={cover} width='100%' alt="can't show" borderRadius={5} />
             <VStack space={1}>
                 <Text color="black" fontSize='lg' fontWeight={500}>{name}</Text>
-                <Text color="orange.400" fontSize='xl' fontWeight='bold'>20$</Text>
+                <Text color="orange.400" fontSize='xl' fontWeight='bold'>{caculateValue(price)}</Text>
                 {/* <Flex flexDirection='row' width='100%'>
                     <Text flex={1} flexWrap='wrap' color='#27272a'>{ commodyDesc }</Text>
                 </Flex> */}
@@ -54,20 +70,23 @@ export const HeadCommody = (props) => {
             <Pressable width="100%" key={item.id} onPress={()=>{ navigation.navigate('Detail', {
                 commodyId: item.id,
                 storeId: item.store 
-            })}}>
+            })}}
+            shadow={5}
+            >
                 {/* need to change `source` to `uri` */}
-                <Image source={item.cover} alt={item.id} width="96%" borderRadius={5} />
+                <Image source={item.cover} alt={item.id} width="98%" borderRadius={10} resizeMode='stretch' />
             </Pressable>
         )
     };
 
     return (
-        <Box marginBottom="2%">
+        <Flex margin="1%" paddingBottom='1%'>
             <Carousel 
+                layout='default'
                 data={comms}
                 renderItem={_renderItem}
                 sliderWidth={Dimensions.get('window').width}
-                itemWidth={Dimensions.get('window').width}
+                itemWidth={Dimensions.get('window').width*0.8}
                 autoplay={true}
                 autoplayDelay={3000}
                 loop={true}
@@ -76,7 +95,7 @@ export const HeadCommody = (props) => {
                     justifyContent: 'center',
                 }}
             />
-        </Box>
+        </Flex>
     )
 }
 
@@ -129,6 +148,7 @@ export const CommodyDetail = ({ navigation, route }) => {
                 <VStack backgroundColor='white' padding='1%'>
                     <Flex alignItems='center' backgroundColor='pink.50'>
                         <Carousel
+                            layout='stack'
                             data={info.covers}
                             renderItem={_renderCovers}
                             sliderWidth={Dimensions.get('window').width}
@@ -167,13 +187,7 @@ export const CommodyDetail = ({ navigation, route }) => {
                     icon={<Icon size='md' as={ <Entypo name='typing' />} />} 
                 />
                 <IconButton
-                    variant='solid'
-                    icon={<Icon size='md' as={ <Entypo name='minus' />} />} 
                     marginLeft='auto'
-                    onPress={()=> {if(count>0) setCount(count-1)}}
-                />
-                <Text alignSelf='center' width="10%" textAlign='center'>{count}</Text>
-                <IconButton
                     variant='solid'
                     icon={<Icon size='md' as={ <Entypo name='plus' />} />} 
                     onPress={()=> {setCount(count+1)}}

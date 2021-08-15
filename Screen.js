@@ -8,6 +8,7 @@ import { MainIcon } from './components/Logo';
 import { Commody as Comm, HeadCommody, CommodyDetail } from './components/Commody';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ResourceFetch } from './util';
+import { Item } from './components/Cart';
 
 const MMKV = new MMKVStorage
     .Loader()
@@ -24,10 +25,28 @@ export const Home = ({ navigation }) => {
 }
 
 export const Cart = ({ navigation }) => {
+    const data = [
+        {
+            id: 1,
+            store: 1,
+            cover: require('./assets/tea2.jpeg'),
+        },
+        {
+            id: 1,
+            store: 2,
+            cover: require('./assets/tea1.jpeg'),
+        }
+    ]
     return (
-        <View>
-            <Text>Cart</Text>
-        </View>
+        <ScrollView width="96%" marginLeft="2%" marginRight="2%" backgroundColor='#fafaf9'>
+            <VStack width="100%">
+                {data.map(item=>{
+                    return (
+                        <Item id={item.id} store={item.store} cover={item.cover} />
+                    )
+                })}
+            </VStack>
+        </ScrollView>
     )
 }
 
@@ -65,6 +84,13 @@ export const Commody = ({ route, navigation }) => {
             name: 'tea1',
             cover: require('./assets/tea1.jpeg'),
             price: 200000000000
+        },
+        {
+            id: 3,
+            store: 1,
+            name: 'tea1',
+            cover: require('./assets/tea2.jpeg'),
+            price: 2000000000
         }
     ];
     const commSplit = (data) => {
@@ -82,7 +108,7 @@ export const Commody = ({ route, navigation }) => {
                             storeId:comm.store 
                         });
                     }}>
-                        <Comm id={comm.id} name={comm.name} cover={comm.cover} />
+                        <Comm id={comm.id} name={comm.name} cover={comm.cover} price={comm.price} />
                     </Pressable>
                 )}
             </VStack>
@@ -94,12 +120,14 @@ export const Commody = ({ route, navigation }) => {
     let stackRight = stackGen(commSplited[1]);
 
     return (
-        <ScrollView width="98%" margin="1%">
-            {<HeadCommody commodies={recommendation} />}
-            <HStack>
-                {stackLeft}
-                {stackRight}
-            </HStack>
+        <ScrollView width="100%" padding="1%" backgroundColor='#fafaf9'>
+            <VStack>
+                {<HeadCommody commodies={recommendation} />}
+                <HStack>
+                    {stackLeft}
+                    {stackRight}
+                </HStack>
+            </VStack>
         </ScrollView>
     )
 }
