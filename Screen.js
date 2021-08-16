@@ -9,7 +9,7 @@ import { Commody as Comm, HeadCommody, CommodyDetail } from './components/Commod
 import { createStackNavigator } from '@react-navigation/stack';
 import { ResourceFetch } from './util';
 import { Item } from './components/Cart';
-import { ProfileHeader, Adress } from './components/Profile';
+import { ProfileHeader, Adress, DeliverPreview, ContactUs } from './components/Profile';
 
 const MMKV = new MMKVStorage
     .Loader()
@@ -148,6 +148,8 @@ export const Profile = () => {
         <ScrollView padding="2%">
             <ProfileHeader account="someaccounthash" name="Chan" />
             <Adress />
+            <DeliverPreview />
+            <ContactUs />
         </ScrollView>
     )
 }
