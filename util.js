@@ -1,5 +1,4 @@
 import MMKVStorage from 'react-native-mmkv-storage';
-// import { stringMd5 } from 'react-native-quick-md5'
 
 const baseUrl = 'http://10.0.0.17:3000'
 

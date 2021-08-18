@@ -44,10 +44,10 @@ export const App = () => {
       }
     })}
     >
+      <Tab.Screen name="Home" component={Home} options={{ title: "主页", headerShown: false }} />
       <Tab.Screen name="Profile" component={Profile} options={{ title: "资料" }} />
       <Tab.Screen name="Cart" component={Cart} options={{ title: "购物车"}} />
       <Tab.Screen name="Commody" component={CommodyWrapper} options={{ title: "商品" }} />
-      <Tab.Screen name="Home" component={Home} options={{ title: "主页" }} />
     </Tab.Navigator>
   )
 }

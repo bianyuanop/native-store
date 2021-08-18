@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { FormControl, Input, Button, Box, Stack, VStack, Flex, Container, Center, Pressable, Text, ScrollView, HStack } from 'native-base';
+import { FormControl, Input, Button, Box, Stack, VStack, Flex, Container, Center, Pressable, Text, ScrollView, HStack, Image } from 'native-base';
 import { Keyboard, ImageBackground } from 'react-native';
 import { View } from 'react-native';
 import MMKVStorage, { useMMKVStorage } from 'react-native-mmkv-storage';
@@ -10,6 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ResourceFetch } from './util';
 import { Item } from './components/Cart';
 import { ProfileHeader, Adress, DeliverPreview, ContactUs } from './components/Profile';
+import { Advertisement, Merchant } from './components/Home';
 
 const MMKV = new MMKVStorage
     .Loader()
@@ -18,10 +19,54 @@ const MMKV = new MMKVStorage
 
 
 export const Home = ({ navigation }) => {
+    const merchants = [
+        {
+            name: 'Jiahua',
+            icon: require('./assets/favicon.png'),
+            store: 1,
+            desc: 'THe most jkjl'
+        },
+        {
+            name: 'Cha',
+            icon: require('./assets/tea.jpeg'),
+            store: 2,
+            desc: 'THe most jkjl'
+        },
+        {
+            name: 'Ye',
+            icon: require('./assets/tea2.jpeg'),
+            store: 3,
+            desc: 'THe most jkjl'
+        },
+    ];
+    const merchantsLen = merchants.length;
+
+
     return (
-        <View>
-            <Text>主页</Text>  
-        </View>
+        <ScrollView>
+            <VStack  height="100%">
+                <Advertisement />
+                <HStack justifyContent='center' marginTop="1%">
+                    <Text>Store</Text>
+                </HStack>
+                <HStack>
+                    <VStack width="50%">
+                    {merchants.slice(0, merchantsLen/2).map(merchant => {
+                        return (
+                            <Merchant name={merchant.name} icon={merchant.icon} store={merchant.store} desc={merchant.desc} /> 
+                        )
+                    })}
+                    </VStack>
+                    <VStack width="50%">
+                    {merchants.slice(merchantsLen/2, merchantsLen).map(merchant => {
+                        return (
+                            <Merchant name={merchant.name} icon={merchant.icon} store={merchant.store} desc={merchant.desc} /> 
+                        )
+                    })}
+                    </VStack>
+                </HStack>
+            </VStack>
+        </ScrollView>
     )
 }
 
